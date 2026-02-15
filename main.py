@@ -11,7 +11,7 @@ def test():
     goal_arrangement_3 = [["D", "E", "A", "B", "C"]]
     goal_arrangement_4 = [["C", "D"], ["E", "A", "B"]]
 
-    # print(test_agent.solve(initial_arrangement_1, goal_arrangement_1))
+    print(test_agent.solve(initial_arrangement_1, goal_arrangement_1))
     # print(test_agent.solve(initial_arrangement_1, goal_arrangement_2))
     # print(test_agent.solve(initial_arrangement_1, goal_arrangement_3)) #revisit
     # print(test_agent.solve(initial_arrangement_1, goal_arrangement_4))
@@ -25,7 +25,7 @@ def test():
     # print(test_agent.solve(initial_arrangement_2, goal_arrangement_5)) #revisit
     # print(test_agent.solve(initial_arrangement_2, goal_arrangement_6))
     # print(test_agent.solve(initial_arrangement_2, goal_arrangement_7)) #revisit
-    print(test_agent.solve(initial_arrangement_2, goal_arrangement_8)) #revisit
+    # print(test_agent.solve(initial_arrangement_2, goal_arrangement_8)) #revisit
 
 if __name__ == "__main__":
     test()
