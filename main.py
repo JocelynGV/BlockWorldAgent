@@ -12,10 +12,10 @@ def test():
     goal_arrangement_3 = [["D", "E", "A", "B", "C"]]
     goal_arrangement_4 = [["C", "D"], ["E", "A", "B"]]
 
-    # print(test_agent.solve(initial_arrangement_1, goal_arrangement_1))
-    # print(test_agent.solve(initial_arrangement_1, goal_arrangement_2))
+    print(test_agent.solve(initial_arrangement_1, goal_arrangement_1))
+    print(test_agent.solve(initial_arrangement_1, goal_arrangement_2))
     print(test_agent.solve(initial_arrangement_1, goal_arrangement_3)) #revisit - good!
-    # print(test_agent.solve(initial_arrangement_1, goal_arrangement_4))
+    print(test_agent.solve(initial_arrangement_1, goal_arrangement_4))
 
     initial_arrangement_2 = [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
     goal_arrangement_5 = [["A", "B", "C", "D", "E", "F", "G", "H", "I"]]

@@ -15,13 +15,13 @@ class BlockWorldAgent:
 		print("Initial difference: " + str(initial_difference))
 
 		queue = [(initial_arrangement, initial_tuples, initial_difference, [])]
-		visited = []
+		# visited = []
 		# visited.add(tuple(map(tuple, initial_arrangement)))
 		# visited.append(initial_arrangement)
-		visited.append(initial_tuples)
+		# visited.append(initial_tuples)
 
-		# visited = set()
-		# visited.add(self.arrangement_to_key(initial_arrangement))
+		visited = set()
+		visited.add(self.arrangement_to_key(initial_arrangement))
 
 
 		# print(visited)
@@ -29,6 +29,8 @@ class BlockWorldAgent:
 		while queue:
 			starting_arrangement, starting_tuples, starting_difference, path = queue.pop(0)
 
+			print("new queue --------------------------------------------------------------- ")
+			print("Starting arrangement: " + str(starting_arrangement))
 			last_letter = []
 			last_letter_for_tuples = []
 			for stack in starting_arrangement:
@@ -74,11 +76,12 @@ class BlockWorldAgent:
 						current_difference = self.get_difference(goal_tuples, current_tuples)
 						print(current_difference)
 
-						# state_key = self.arrangement_to_key(current_tuples)
+						temp_arrangement = self.apply_move(starting_arrangement, current_tuples[len(current_tuples) - 1])
+						state_key = self.arrangement_to_key(temp_arrangement)
 
-						if self.check_visited(current_tuples, visited):
-						# if state_key in visited:
-							print("Already visited: " + str(current_tuples))
+						# if self.check_visited(current_tuples, visited):
+						if state_key in visited:
+							print("Already visited: " + str(temp_arrangement))
 						else:
 							# visited.append(current_tuples)
 							# visited.add(state_key)
@@ -105,35 +108,48 @@ class BlockWorldAgent:
 				# print(starting_tuples)
 
 			# add new arrangements to queue
+			# for map_value in current_map:
+			# 	if self.check_visited(map_value[0], visited):
+			# 		print("Already visited: " + str(map_value[0]))
+			# 		continue
+			# 	else: 	
+			# 		visited.append(map_value[0])
+
+			# 		if map_value[1] == min_difference:
+			# 			move = map_value[0][len(map_value[0]) - 1]
+			# 			print("Move: " + str(move))
+			# 			new_arrangement = self.apply_move(starting_arrangement, move)
+			# 			print("New array: " + str(new_arrangement))
+			# 			queue.append((new_arrangement, map_value[0], map_value[1], path + [move]))
+			# 			# print(queue)
+
+
 			for map_value in current_map:
-				if self.check_visited(map_value[0], visited):
-					print("Already visited: " + str(map_value[0]))
+				# if map_value[1] == min_difference:
+				# 	move = map_value[0][len(map_value[0]) - 1]
+				# 	new_arrangement = self.apply_move(starting_arrangement, move)
+
+				# 	state_key = self.arrangement_to_key(new_arrangement)
+
+				# 	if state_key in visited:
+				# 		continue
+
+				# 	visited.add(state_key)
+
+				# 	queue.append((new_arrangement, map_value[0], map_value[1], path + [move]))
+
+
+				move = map_value[0][len(map_value[0]) - 1]
+				print("Move: " + str(move))
+				new_arrangement = self.apply_move(starting_arrangement, move)
+				print("New array: " + str(new_arrangement))
+				state_key = self.arrangement_to_key(new_arrangement)
+
+				if state_key in visited:
 					continue
-				else: 	
-					visited.append(map_value[0])
 
-					if map_value[1] == min_difference:
-						move = map_value[0][len(map_value[0]) - 1]
-						print("Move: " + str(move))
-						new_arrangement = self.apply_move(starting_arrangement, move)
-						print("New array: " + str(new_arrangement))
-						queue.append((new_arrangement, map_value[0], map_value[1], path + [move]))
-						# print(queue)
-
-
-				# for map_value in current_map:
-					# if map_value[1] == min_difference:
-					# 	move = map_value[0][len(map_value[0]) - 1]
-					# 	new_arrangement = self.apply_move(starting_arrangement, move)
-
-					# 	state_key = self.arrangement_to_key(new_arrangement)
-
-					# 	if state_key in visited:
-					# 		continue
-
-					# 	visited.add(state_key)
-
-					# 	queue.append((new_arrangement, map_value[0], map_value[1], path + [move]))
+				visited.add(state_key)
+				queue.append((new_arrangement, map_value[0], map_value[1], path + [move]))
 
 		pass
 
